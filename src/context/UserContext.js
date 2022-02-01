@@ -1,5 +1,4 @@
 import React from "react";
-
 var UserStateContext = React.createContext();
 var UserDispatchContext = React.createContext();
 
@@ -53,12 +52,27 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
   setError(false);
   setIsLoading(true);
 
-  if (!!login && !!password) {
+  if (!!login ) {
     setTimeout(() => {
-      localStorage.setItem('id_token', 1)
+      var myHeaders = new Headers();
+      myHeaders.append("Cookie", "csrftoken=BasGHGQEDuYroMVKzBzJYrRtVOOh78KtIwNxgMwmkovChSqGc8L6ZYdiaMieqa0S");
+
+      var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        redirect: 'follow'
+      };
+      let data = fetch("dashboard/login/", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+          return result;
+        })
+        .catch(error => console.log('error', error));
+      console.log(data);
+      localStorage.setItem('id_token', data["token"])
       setError(null)
       setIsLoading(false)
-      dispatch({ type: 'LOGIN_SUCCESS' })
+      // dispatch({ type: 'LOGIN_SUCCESS' })
 
       history.push('/app/dashboard')
     }, 2000);

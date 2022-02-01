@@ -4,8 +4,6 @@ import {
   CircularProgress,
   Typography,
   Button,
-  Tabs,
-  Tab,
   TextField,
   Fade,
 } from "@material-ui/core";
@@ -40,39 +38,12 @@ function Login(props) {
     <Grid container className={classes.container}>
       <div className={classes.logotypeContainer}>
         <img src={logo} alt="logo" className={classes.logotypeImage} />
-        <Typography className={classes.logotypeText}>Material Admin</Typography>
+        <Typography className={classes.logotypeText}>Begaz Admin</Typography>
       </div>
       <div className={classes.formContainer}>
         <div className={classes.form}>
-          <Tabs
-            value={activeTabId}
-            onChange={(e, id) => setActiveTabId(id)}
-            indicatorColor="primary"
-            textColor="primary"
-            centered
-          >
-            <Tab label="Login" classes={{ root: classes.tab }} />
-            <Tab label="New User" classes={{ root: classes.tab }} />
-          </Tabs>
           {activeTabId === 0 && (
             <React.Fragment>
-              <Typography variant="h1" className={classes.greeting}>
-                Good Morning, User
-              </Typography>
-              <Button size="large" className={classes.googleButton}>
-                <img src={google} alt="google" className={classes.googleIcon} />
-                &nbsp;Sign in with Google
-              </Button>
-              <div className={classes.formDividerContainer}>
-                <div className={classes.formDivider} />
-                <Typography className={classes.formDividerWord}>or</Typography>
-                <div className={classes.formDivider} />
-              </div>
-              <Fade in={error}>
-                <Typography color="secondary" className={classes.errorMessage}>
-                  Something is wrong with your login or password :(
-                </Typography>
-              </Fade>
               <TextField
                 id="email"
                 InputProps={{
@@ -81,7 +52,6 @@ function Login(props) {
                     input: classes.textField,
                   },
                 }}
-                value={loginValue}
                 onChange={e => setLoginValue(e.target.value)}
                 margin="normal"
                 placeholder="Email Adress"
@@ -96,7 +66,6 @@ function Login(props) {
                     input: classes.textField,
                   },
                 }}
-                value={passwordValue}
                 onChange={e => setPasswordValue(e.target.value)}
                 margin="normal"
                 placeholder="Password"
@@ -128,13 +97,6 @@ function Login(props) {
                     Login
                   </Button>
                 )}
-                <Button
-                  color="primary"
-                  size="large"
-                  className={classes.forgetButton}
-                >
-                  Forget Password
-                </Button>
               </div>
             </React.Fragment>
           )}
@@ -245,7 +207,11 @@ function Login(props) {
           )}
         </div>
         <Typography color="primary" className={classes.copyright}>
-        © 2014-{new Date().getFullYear()} <a style={{ textDecoration: 'none', color: 'inherit' }} href="https://flatlogic.com" rel="noopener noreferrer" target="_blank">Flatlogic</a>, LLC. All rights reserved.
+        © 2020-{new Date().getFullYear()} 
+        -<a style={{ textDecoration: 'none', color: 'inherit' }}
+        href="https://begaz.app/" rel="noopener noreferrer" target="_blank">
+           Begaz.app</a>
+          , LLC. All rights reserved.
         </Typography>
       </div>
     </Grid>
